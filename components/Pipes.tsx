@@ -57,14 +57,27 @@ interface PipeProps {
 export function Pipe({ position }: PipeProps) {
   const color = position === 'top' ? 'red' : 'green';
   const borderColor = position === 'top' ? 'darkred' : 'darkgreen';
+  const wickHeight = '20%';
 
   return (
-    <div 
-      className={`h-full w-full border-4 rounded-sm`}
-      style={{
-        backgroundColor: color,
-        borderColor: borderColor,
-      }}
-    />
+    <div className="h-full w-full relative">
+      <div 
+        className={`absolute w-full border-4 rounded-sm`}
+        style={{
+          backgroundColor: color,
+          borderColor: borderColor,
+          height: '80%',
+          [position]: 0,
+        }}
+      />
+      <div 
+        className={`absolute w-1 left-1/2 transform -translate-x-1/2`}
+        style={{
+          backgroundColor: 'white',
+          height: wickHeight,
+          [position]: '80%',
+        }}
+      />
+    </div>
   );
 }
